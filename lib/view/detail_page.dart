@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_fvm/model/model.dart';
 
 class DetailPage extends StatefulWidget {
-  final List<Pokemon>? pokemon;
+  final List<PokemonModel>? pokemon;
   int data;
   DetailPage({Key? key, required this.pokemon, required this.data})
       : super(key: key);
