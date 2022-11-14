@@ -1,10 +1,12 @@
-part of 'filter_bloc_bloc.dart';
+// part of 'filter_bloc_bloc.dart';
 
-abstract class FilterBlocEvent extends Equatable {
-  const FilterBlocEvent();
+// abstract class FilterBlocEvent extends Equatable {
+//   const FilterBlocEvent();
 
-  @override
-  List<Object> get props => [];
-}
+//   @override
+//   List<Object> get props => [];
+// }
 
-class FilterLoad extends FilterBlocEvent {}
+// // class FilterLoad extends FilterBlocEvent {
+//   bool hi = true;
+// }

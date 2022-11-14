@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) => PokemonFavouriteBloc(),
-        )
+        ),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
