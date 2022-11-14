@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_fvm/bloc/pokemon_bloc_bloc.dart';
 import 'package:flutter_fvm/view/homepage.dart';
-import 'package:get/get.dart';
-import 'repository/repo.dart';
+
+import 'bloc/favorite/favorite_bloc.dart';
 
 void main() {
   runApp(MyApp());
@@ -15,7 +15,13 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => PokemonFavouriteBloc(),
+        )
+      ],
+      child: MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
           primarySwatch: Colors.blue,
@@ -24,6 +30,8 @@ class MyApp extends StatelessWidget {
         home: BlocProvider<PokemonBlocBloc>(
           create: (context) => PokemonBlocBloc()..add(GetEventData()),
           child: HomePage(),
-        ),);
+        ),
+      ),
+    );
   }
 }

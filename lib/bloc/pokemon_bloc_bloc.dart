@@ -11,16 +11,17 @@ class PokemonBlocBloc extends Bloc<PokemonBlocEvent, PokemonBlocState> {
   PokemonBlocBloc() : super(PokemonBlocInitial()) {
     on<PokemonBlocEvent>(_onFetchPoke);
   }
-   
+
   void _onFetchPoke(event, emit) async {
     emit(Loading());
     try {
       final pokemonList = await ApiService.fetchPokemonList();
 
-      emit(FectSuccess(pokemonList: pokemonList,));
+      emit(FectSuccess(
+        pokemonList: pokemonList,
+      ));
     } catch (e) {
-      emit(Error(errorMsg: e.toString(), message: ''));
+      emit(PokemonError(errorMsg: e.toString(), message: ''));
     }
-   
   }
 }
