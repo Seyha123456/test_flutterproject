@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class FilterScreen extends StatefulWidget {
   const FilterScreen({Key? key}) : super(key: key);
@@ -23,11 +20,14 @@ class _FilterScreenState extends State<FilterScreen> {
   }
 
   Widget _bodyFilterPokemon() {
-    return FilterChip(
-      label: Text("text"),
-      onSelected: (bool value) {
-        print("selected");
-      },
+    return Padding(
+      padding: const EdgeInsets.all(5.0),
+      child: FilterChip(
+        label: Text("text"),
+        onSelected: (bool value) {
+          print("selected");
+        },
+      ),
     );
   }
 }

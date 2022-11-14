@@ -7,4 +7,9 @@ abstract class FilterBlocState extends Equatable {
   List<Object> get props => [];
 }
 
-class FilterBlocInitial extends FilterBlocState {}
+class FilterBlocLoading extends FilterBlocState {}
+
+class FilterBlocLoaded extends FilterBlocState {
+  final PokemonModel pokemonModel;
+  FilterBlocLoaded(this.pokemonModel);
+}

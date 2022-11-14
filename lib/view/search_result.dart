@@ -1,11 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_fvm/view/product_list.dart';
-
 import '../bloc/pokemon_search/pokemon_search_bloc.dart';
 import '../bloc/pokemon_search/pokemon_search_state.dart';
 
@@ -31,7 +26,7 @@ class _SearchListState extends State<SearchList> {
           } else if (state is PokemonSearchSucessState) {
             if (state.pokemonList.isEmpty) {
               return const Center(
-                child: Text("No data"),
+                child: Text("No Pokemon Data"),
               );
             }
             return ListView.builder(

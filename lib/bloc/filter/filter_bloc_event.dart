@@ -6,3 +6,5 @@ abstract class FilterBlocEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
+class FilterLoad extends FilterBlocEvent {}
