@@ -9,9 +9,8 @@ class Loading extends PokemonBlocState {}
 
 class FectSuccess extends PokemonBlocState {
   List<PokemonModel> pokemonList;
-  FectSuccess({
-    required this.pokemonList,
-  });
+  final List<String> pokemonTypeList;
+  FectSuccess(this.pokemonList, this.pokemonTypeList);
 }
 
 class PokemonError extends PokemonBlocState {

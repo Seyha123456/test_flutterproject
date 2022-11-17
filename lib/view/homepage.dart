@@ -1,23 +1,21 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_fvm/bloc/filter_bloc/filter_pokemon_bloc.dart';
+import 'package:flutter_fvm/view/filterScreen.dart';
 import 'package:flutter_fvm/view/product_list.dart';
-import 'package:flutter_fvm/view/search.dart';
 import 'package:flutter_fvm/view/search_result.dart';
-import '../bloc/favorite/favorite_bloc.dart';
 import '../bloc/pokemon_bloc_bloc.dart';
 import '../bloc/pokemon_search/pokemon_search_bloc.dart';
 import '../bloc/pokemon_search/pokemon_search_event.dart';
-import '../model/model.dart';
 import 'package:staggered_grid_view_flutter/widgets/staggered_grid_view.dart';
 import 'package:staggered_grid_view_flutter/widgets/staggered_tile.dart';
-import 'detail_page.dart';
+import '../model/model.dart';
 import 'favorite_screen.dart';
-import 'filterScreen.dart';
 
 class HomePage extends StatefulWidget {
-  late final PokemonModel pokemonModel;
-
+  // late final List<PokemonModel> pokemonModel;
+  List<String> list = [];
+  List<PokemonModel> filterList = [];
   @override
   State<HomePage> createState() => _HomePageState();
 }
@@ -50,28 +48,45 @@ class _HomePageState extends State<HomePage> {
               BlocProvider(
                 create: (c) =>
                     PokemonSearchBloc(pokemonList: state.pokemonList),
-                child: Builder(builder: (context) {
-                  return IconButton(
-                    onPressed: () {
-                      showSearch(
+                child: Builder(
+                  builder: (context) {
+                    return IconButton(
+                      onPressed: () {
+                        showSearch(
                           context: context,
                           delegate: _SearchDelegation(
-                              pokemonSearchBloc:
-                                  BlocProvider.of<PokemonSearchBloc>(context)));
-                    },
-                    icon: const Icon(Icons.search),
-                  );
-                }),
+                            pokemonSearchBloc:
+                                BlocProvider.of<PokemonSearchBloc>(context),
+                          ),
+                        );
+                      },
+                      icon: const Icon(Icons.search),
+                    );
+                  },
+                ),
               ),
               SizedBox(
                 width: 5,
               ),
               IconButton(
                 onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const FilterScreen()));
+                  context.read<FilterPokemonBloc>().add(
+                        FilterPokemonClicked(
+                          pokemonModel: state.pokemonList,
+                          pokemonType: widget.list,
+                        ),
+                      );
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => FilterScreen(
+                        pokemon: state.pokemonList,
+                      ),
+                    ),
+                  );
                 },
-                icon: const Icon(Icons.filter_list_alt),
+                icon: const Icon(
+                  Icons.filter_list_alt,
+                ),
               ),
             ],
             title: Text(
@@ -86,7 +101,9 @@ class _HomePageState extends State<HomePage> {
                   if (state is Loading) {
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Center(child: CircularProgressIndicator()),
+                      child: Center(
+                        child: CircularProgressIndicator(),
+                      ),
                     );
                   } else if (state is FectSuccess) {
                     return Expanded(

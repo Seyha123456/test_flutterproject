@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_fvm/view/product_list.dart';
 
@@ -35,23 +32,23 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
           );
         } else if (state is PokemonFavouriteSucessState) {
           return Scaffold(
-              appBar: AppBar(
-                backgroundColor: Colors.green,
-                title: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
-                    Text("Wishlist"),
-                  ],
-                ),
+            appBar: AppBar(
+              title: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: const [
+                  Text("Wishlist"),
+                ],
               ),
-              body: ListView.builder(
-                itemCount: state.pokemonList.length,
-                itemBuilder: (context, index) {
-                  return PokemonList(
-                    pokemonModel: state.pokemonList[index],
-                  );
-                },
-              ));
+            ),
+            body: ListView.builder(
+              itemCount: state.pokemonList.length,
+              itemBuilder: (context, index) {
+                return PokemonList(
+                  pokemonModel: state.pokemonList[index],
+                );
+              },
+            ),
+          );
         } else {
           return const CircularProgressIndicator();
         }

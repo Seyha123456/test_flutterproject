@@ -3,9 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_fvm/bloc/favorite/favorite_bloc.dart';
 import 'package:flutter_fvm/model/model.dart';
 import 'package:flutter_fvm/view/detail_page.dart';
-import 'package:get/get.dart';
-import '../bloc/pokemon_search/pokemon_search_bloc.dart';
-import 'favorite_screen.dart';
 
 class PokemonList extends StatefulWidget {
   late final PokemonModel pokemonModel;
@@ -106,8 +103,10 @@ class _PokemonListState extends State<PokemonList> {
                 ),
               ),
               SizedBox(height: 8),
-              Text('\$${widget.pokemonModel.typeofpokemon}',
-                  style: TextStyle(fontSize: 32, fontFamily: 'avenir')),
+              Text(
+                widget.pokemonModel.typeofpokemon.toString(),
+                style: TextStyle(fontSize: 32, fontFamily: 'avenir'),
+              ),
             ],
           ),
         ),
